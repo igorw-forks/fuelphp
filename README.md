@@ -8,6 +8,16 @@ While this is written anew from the ground up, it still very much relies on v1.x
 
 Below I'll keep a list of important techniques/patterns implemented.
 
+### Adoption of industry standards like Composer/Packagist and PSR-0
+
+Version 2.0 will include and have its packages setup to be installable using Composer. Also allowing you to easily
+include packages from Packagist.
+
+By default Fuel will now use the PSR-0 standard for classloading. Its implementation is actually a superset, but it is
+fully compatible with PSR-0. For convenience and speed each Package can be given a base namespace that will be required
+and stripped before any class to path conversion takes place. The same goes for modules inside the Package, those
+will have subnamespaces that are required and stripped before conversion as well.
+
 ### Everything is a Package and they'll be routable
 
 In v1.x the Application, Core and Oil packages weren't normal packages and didn't follow the same rules as other
@@ -94,16 +104,6 @@ before, but those children will be separate objects which can be accessed on the
 loaded them.
 The Config and Language classes have also both become extensions of the new Data superclass as they share most of their
 functionality.
-
-### Adoption of industry standards like Composer/Packagist and PSR-0
-
-By default Fuel will now use the PSR-0 standard for classloading. Its implementation is actually a superset, but it is
-fully compatible with PSR-0. For convenience and speed each Package can be given a base namespace that will be required
-and stripped before any class to path conversion takes place. The same goes for modules inside the Package, those
-will have subnamespaces that are required and stripped before conversion as well.
-
-Version 2.0 will also include Composer and will be able to include packages from Packagist. How this will end up
-working is very much in development still.
 
 ### ViewModel becomes Presenter
 
