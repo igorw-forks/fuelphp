@@ -10,8 +10,7 @@ composer.lock
 .tmpoj
 .idea
 nbproject/
-fuelphp/*/resources/logs/
-fuelphp/*/resrouces/cache/
 fuelphp/.composer/
+fuelphp/fuel/
 fuelphp/twig/
 fuelphp/dflydev/

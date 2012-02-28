@@ -4,7 +4,9 @@
 	},
 	"require": {
 		"php": ">=5.3.0",
-		"twig/twig": ">=1.6.0",
-		"dflydev/markdown": ">=1.0.0"
+		"fuel/kernel": "dev-master",
+		"fuel/core": "dev-master",
+		"fuel/oil": "dev-master",
+		"fuel/legacy": "dev-master"
 	}
 }
