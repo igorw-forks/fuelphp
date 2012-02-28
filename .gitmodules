@@ -10,3 +10,15 @@
 [submodule "fuel/oil"]
 	path = fuel/fuel/oil
 	url = git@github.com:fuelphp/oil.git
+[submodule "fuel/fuel/oil"]
+	path = fuel/fuel/oil
+	url = git@github.com:fuelphp/oil.git
+[submodule "fuel/fuel/legacy"]
+	path = fuel/fuel/legacy
+	url = git@github.com:fuelphp/legacy.git
+[submodule "fuel/fuel/kernel"]
+	path = fuel/fuel/kernel
+	url = git@github.com:fuelphp/kernel.git
+[submodule "fuel/fuel/core"]
+	path = fuel/fuel/core
+	url = git@github.com:fuelphp/core.git
