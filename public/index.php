@@ -5,7 +5,7 @@
  * (these constants are helpers and are not required by Fuel itself)
  */
 define('DOCROOT', __DIR__.'/');
-define('FUELPATH', DOCROOT.'../fuel/');
+define('FUELPATH', DOCROOT.'../fuelphp/');
 define('APPPATH', FUELPATH.'app/');
 
 /**
