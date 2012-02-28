@@ -12,6 +12,4 @@ composer.lock
 nbproject/
 fuel/*/resources/logs/
 fuel/*/resrouces/cache/
-fuel/_composer/.composer/
-fuel/_composer/dflydev/
-fuel/_composer/twig/
+fuel/.composer/
