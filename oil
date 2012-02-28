@@ -11,7 +11,7 @@ define('APPPATH', FUELPATH.'oil/');
 /**
  * Setup environment
  */
-require FUELPATH.'kernel/classes/Environment.php';
+require FUELPATH.'fuel/kernel/classes/Environment.php';
 use Fuel\Kernel\Environment;
 $env = Environment::instance()->init(array(
 	'name'  => isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : 'development',
@@ -21,7 +21,7 @@ $env = Environment::instance()->init(array(
 /**
  * Initialize Application in package 'app'
  */
-$app = _loader()->load_app('oil', function() {});
+$app = _loader()->load_app('fuel/oil', function() {});
 $cli = $app->get_object('Cli');
 
 /**

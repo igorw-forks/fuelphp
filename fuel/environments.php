@@ -17,7 +17,7 @@ return array(
 			'language'  => 'en',
 			'timezone'  => 'UTC',
 			'encoding'  => 'UTF-8',
-			'packages'  => array('core'),
+			'packages'  => array('fuel/core'),
 		);
 	},
 

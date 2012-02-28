@@ -11,7 +11,7 @@ define('APPPATH', FUELPATH.'app/');
 /**
  * Setup environment
  */
-require FUELPATH.'kernel/classes/Environment.php';
+require FUELPATH.'fuel/kernel/classes/Environment.php';
 use Fuel\Kernel\Environment;
 $env = Environment::instance()->init(array(
 	'name'  => isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : 'development',
