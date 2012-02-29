@@ -29,9 +29,8 @@ $cli = $app->get_object('Cli');
  */
 try
 {
-	$uri = '';
-	$i = 1;
-	while (($arg = $cli->option($i++)) and strncmp($arg, '-', 1) != 0)
+	// Generates a URI based on the commandline input
+	for ($uri = '', $i = 1; ($arg = $cli->option($i)) and strncmp($arg, '-', 1) != 0; $i++)
 	{
 		$uri .= '/'.$arg;
 	}
