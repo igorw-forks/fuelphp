@@ -16,7 +16,7 @@ return array(
 	{
 		// Switch off error display to allow Fuel to handle them
 		// Uses suppression as some setups don't allow ini_set()
-		@ini_set('display_errors', 'Off');
+		// @ini_set('display_errors', 'Off');
 
 		// Optional: include Packagist loader
 		// _env('loader')->load_package(require __DIR__.'/composerloader.php', Loader::TYPE_CORE);
