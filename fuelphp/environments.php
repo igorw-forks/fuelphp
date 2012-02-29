@@ -1,4 +1,12 @@
 <?php
+/**
+ * Part of the FuelPHP framework.
+ *
+ * @package    Fuel
+ * @version    2.0.0
+ * @license    MIT License
+ * @copyright  2010 - 2012 Fuel Development Team
+ */
 
 use Fuel\Kernel\Loader;
 

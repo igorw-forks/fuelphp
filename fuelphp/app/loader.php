@@ -1,4 +1,9 @@
 <?php
+/**
+ * Generate Package Loader object and register Application with the Environment
+ *
+ * @package  App
+ */
 
 _env()->register_application('app', 'App');
 

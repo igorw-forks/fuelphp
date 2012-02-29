@@ -1,4 +1,12 @@
 <?php
+/**
+ * Setup Environment to run PHPUnit in
+ *
+ * @package    Fuel
+ * @version    2.0.0
+ * @license    MIT License
+ * @copyright  2010 - 2012 Fuel Development Team
+ */
 
 /**
  * Setup environment

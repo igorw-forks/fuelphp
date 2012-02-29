@@ -2,6 +2,8 @@
 
 /**
  * This is a helperfile for IDE code completion, it's never actually used
+ *
+ * @ignore
  */
 
 namespace Classes\Application
