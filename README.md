@@ -6,7 +6,7 @@ While this is written anew from the ground up, it still very much relies on v1.x
 
 ## How to install
 
-Clone or download this repository and run "composer.phar install" from the commandline in the directory where you put 
+Clone or download this repository and run `composer.phar install` from the commandline in the directory where you put 
 Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/legacy" and "fuel/oil" packages into the fuelphp 
 directory.
 
