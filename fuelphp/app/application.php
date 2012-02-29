@@ -14,7 +14,7 @@ class App extends Application\Base
 	public function config()
 	{
 		return array(
-			'log_level' => 4,
+			'log_level' => 0,
 		);
 	}
 }
