@@ -12,7 +12,8 @@ return array(
 	/**
 	 * Default settings, these are always run first
 	 */
-	'__default' => function() {
+	'__default' => function()
+	{
 		// Switch off error display to allow Fuel to handle them
 		// Uses suppression as some setups don't allow ini_set()
 		@ini_set('display_errors', 'Off');
@@ -33,14 +34,16 @@ return array(
 	/**
 	 * Development environment
 	 */
-	'development' => function() {
+	'development' => function()
+	{
 		error_reporting(-1);
 	},
 
 	/**
 	 * Production environment
 	 */
-	'production' => function() {
+	'production' => function()
+	{
 		error_reporting(0);
 	},
 );

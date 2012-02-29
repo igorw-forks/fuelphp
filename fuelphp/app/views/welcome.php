@@ -10,7 +10,7 @@
 
 <?php echo $body; ?>
 
-<?php $input = _app()->active_request()->input; ?>
+<?php $input = _req()->input; ?>
 <p>
 	<strong>Method: </strong> <?php echo $input->method(); ?><br />
 	<strong>URI: </strong> <?php echo $input->uri(); ?><br />
