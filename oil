@@ -21,7 +21,7 @@ $env = Environment::instance()->init(array(
 /**
  * Initialize Application in package 'app'
  */
-$app = _env('loader')->load_app('fuel/oil', function() {});
+$app = _env('loader')->load_application('fuel/oil', function() {});
 $cli = $app->get_object('Cli');
 
 /**

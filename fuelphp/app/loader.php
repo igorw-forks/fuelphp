@@ -1,6 +1,6 @@
 <?php
 
-_env()->register_app('app', 'App');
+_env()->register_application('app', 'App');
 
 // Forge and return your Application Package object
 return _forge('Loader:Package')
