@@ -4,6 +4,12 @@ This is very early alpha development of the next generation of FuelPHP. Almost n
 is very much not recommended for production use.
 While this is written anew from the ground up, it still very much relies on v1.x for much of its functionality.
 
+## How to install
+
+Clone or download this repository and run "composer.phar install" from the commandline in the directory where you put 
+Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/legacy" and "fuel/oil" packages into the fuelphp 
+directory.
+
 ## Important changes
 
 Below I'll keep a list of important techniques/patterns implemented.
