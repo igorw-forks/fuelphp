@@ -18,7 +18,7 @@ return array(
 		@ini_set('display_errors', 'Off');
 
 		// Optional: include Packagist loader
-		// _loader()->load_package(require __DIR__.'/composerloader.php', Loader::TYPE_CORE);
+		// _env('loader')->load_package(require __DIR__.'/composerloader.php', Loader::TYPE_CORE);
 
 		// Return array with environment config
 		return array(

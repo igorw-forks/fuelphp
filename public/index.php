@@ -21,7 +21,7 @@ $env = Environment::instance()->init(array(
 /**
  * Initialize Application in package 'app'
  */
-$app = _loader()->load_app('app', function() {});
+$app = _env('loader')->load_app('app', function() {});
 
 /**
  * Run the app and output the response
