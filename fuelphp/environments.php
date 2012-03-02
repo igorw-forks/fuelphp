@@ -6,6 +6,8 @@
  * @version    2.0.0
  * @license    MIT License
  * @copyright  2010 - 2012 Fuel Development Team
+ *
+ * @return  array
  */
 
 use Fuel\Kernel\Environment;
@@ -14,12 +16,13 @@ use Fuel\Kernel\Loader;
 /**
  * Here you setup your different environments
  * (put all defaults into '__default')
- *
- * @return  \Closure[]
  */
 return array(
 	/**
 	 * Default settings, these are always run first
+	 *
+	 * @param   Fuel\Kernel\Environment $env
+	 * @return  void|\Closure
 	 */
 	'__default' => function(Environment $env)
 	{
@@ -44,6 +47,9 @@ return array(
 
 	/**
 	 * Development environment
+	 *
+	 * @param   Fuel\Kernel\Environment $env
+	 * @return  void|\Closure
 	 */
 	'development' => function(Environment $env)
 	{
@@ -52,6 +58,9 @@ return array(
 
 	/**
 	 * Production environment
+	 *
+	 * @param   Fuel\Kernel\Environment $env
+	 * @return  void|\Closure
 	 */
 	'production' => function(Environment $env)
 	{
