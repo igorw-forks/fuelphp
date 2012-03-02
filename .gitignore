@@ -14,3 +14,6 @@ fuelphp/.composer/
 fuelphp/fuel/
 fuelphp/twig/
 fuelphp/dflydev/
+fuelphp/app/resources/cache/
+fuelphp/app/resources/logs/
+fuelphp/app/resources/tmp/
