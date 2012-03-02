@@ -6,8 +6,8 @@ While this is written anew from the ground up, it still very much relies on v1.x
 
 ## How to install
 
-Clone or download this repository and run `composer.phar install` from the commandline in the directory where you put 
-Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/legacy" and "fuel/oil" packages into the fuelphp 
+Clone or download this repository and run `composer.phar install` from the commandline in the directory where you put
+Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/legacy" and "fuel/oil" packages into the fuelphp
 directory.
 
 ## Important changes
@@ -48,7 +48,7 @@ way you can alias classes to global from the Core and extend them in a Package l
 For that reason we still provide these aliases but they're aliased to a `Classes\` namespace.
 
 Next we implemented a DiC. This will be available globally and Application specific, where the Application DiC will
-fallback to the global DiC when something unknown is requested. Below are the three most important methods:
+fallback to the environment DiC when something unknown is requested. Below are the three most important methods:
 
 ```php
 <?php
@@ -60,11 +60,15 @@ $session_classname = $dic->get_class('Session');
 $session = $dic->forge('Session');
 // Returns an instance of the class that get_class() returns
 // Has a global function _forge() available that calls this on the active Application's DiC
+// You can also register & name it with the objects container while forging:
+$session = $dic->forge(array('my_session', 'Session'));
 
 $session = $dic->get_object('Session', 'name');
 // Retrieves an object from the DiC for a specific class, without the 'name' param it will
 // create a default instance when one isn't available yet. Named objects must be registered
-// using $dic->set_object($class, $name) or they'll throw an Exception
+// using set_object() or they'll throw an Exception.
+// If you didn't do it while forging, it can also be done after the fact:
+$dic->set_object('Session', 'name', $session)
 ```
 
 ### Environment superobject
@@ -90,7 +94,7 @@ normal `index.php` FC.
 
 Tasks have been reimplemented as specialized Controllers which means their methods require an 'action_' prefix and
 they're inside a subnamespace of the Application. The routing to these Tasks works through normal routing means but
-requires specialized Routes that route to Tasks instead of Controllers.
+requires specialized Route objects that route to Tasks instead of Controllers.
 All Oil command-classes have been reimplemented as Tasks.
 
 ### File structure reordering
@@ -108,8 +112,8 @@ Even though both Config and Language had a concept of 'groups' they were just 1 
 is no longer the case. Each Application will have a main Config object that can access its 'children' much like
 before, but those children will be separate objects which can be accessed on their own and are part of the class that
 loaded them.
-The Config and Language classes have also both become extensions of the new Data superclass as they share most of their
-functionality.
+The Config and Language classes have also both become extensions of the new Data superclass as they share a lot of
+their functionality.
 
 ### ViewModel becomes Presenter
 
@@ -122,8 +126,8 @@ The Presenter class has also become a superset of the View class instead of wrap
 ### Parser package integrated into the Kernel/Core
 
 As the parsing of strings is necessary throughout Fuel and not just in Views this needs to be available everywhere for
-both files and free input. This the new Parser classes concept into the Kernel which has just PHP support, the Core
-however adds Markdown and Twig out of the box.
+both files and free input. Because of this a new Parser concept was introduced. Though the Kernel has just PHP support,
+the Core will add Markdown and Twig out of the box.
 
 ### Migrations as objects
 
@@ -132,7 +136,7 @@ Migrations will no longer be classes but instead they'll be objects. An example 
 ```php
 <?php
 
-return _forge('Migration')
+return $app->forge('Migration')
 	->up(function() {
 		// do some DB transactions
 	})
