@@ -10,7 +10,7 @@
 
 <?php echo $body; ?>
 
-<?php $input = _req()->input; ?>
+<?php $input = Fuel\Kernel\Environment::instance()->input; ?>
 <p>
 	<strong>Method: </strong> <?php echo $input->method(); ?><br />
 	<strong>URI: </strong> <?php echo $input->uri(); ?><br />
