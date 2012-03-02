@@ -8,6 +8,7 @@
  * @copyright  2010 - 2012 Fuel Development Team
  */
 
+use Fuel\Kernel\Environment;
 use Fuel\Kernel\Loader;
 
 /**
@@ -20,29 +21,31 @@ return array(
 	/**
 	 * Default settings, these are always run first
 	 */
-	'__default' => function()
+	'__default' => function(Environment $env)
 	{
 		// Switch off error display to allow Fuel to handle them
 		// Uses suppression as some setups don't allow ini_set()
 		// @ini_set('display_errors', 'Off');
 
-		// Optional: include Packagist loader
-		// _env('loader')->load_package(require __DIR__.'/composerloader.php', Loader::TYPE_CORE);
-
 		// Return array with environment config
-		return array(
-			'locale'    => null,
-			'language'  => 'en',
-			'timezone'  => 'UTC',
-			'encoding'  => 'UTF-8',
-			'packages'  => array('fuel/core'),
-		);
+		$env->locale = null;
+		$env->language = 'en';
+		$env->timezone = 'UTC';
+		$env->encoding = 'UTF-8';
+
+		return function (Environment $env)
+		{
+			$env->loader->load_package('fuel/core', Loader::TYPE_CORE);
+
+			// Optional: include Packagist loader
+			// $env->loader->load_package(require __DIR__.'/composerloader.php', Loader::TYPE_CORE);
+		};
 	},
 
 	/**
 	 * Development environment
 	 */
-	'development' => function()
+	'development' => function(Environment $env)
 	{
 		error_reporting(-1);
 	},
@@ -50,7 +53,7 @@ return array(
 	/**
 	 * Production environment
 	 */
-	'production' => function()
+	'production' => function(Environment $env)
 	{
 		error_reporting(0);
 	},
