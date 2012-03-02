@@ -60,9 +60,9 @@ the DiC:
     $session = $dic->forge(array('my_session', 'Session'));
 
 `forge()` returns an instance of the class that get_class() returns on the first argument. You can also register &
-name it as is done in the second example using `array($name, $class)`. When this method is called on an application's
-DiC instance it will automatically call a `set_app(Application\Base $app)` method on the new instance when available,
-to provide the parent Application reference.
+name it as is done in the second example using `array($name, $class)`. Any additional arguments past the first one are
+passed on to the constructor. When this method is called on an application's DiC instance it will automatically call a
+`set_app(Application\Base $app)` method on the new instance when available, to provide the parent Application reference.
 
     $session = $dic->get_object('Session', 'name');
 
