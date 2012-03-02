@@ -48,28 +48,31 @@ way you can alias classes to global from the Core and extend them in a Package l
 For that reason we still provide these aliases but they're aliased to a `Classes\` namespace.
 
 Next we implemented a DiC. This will be available globally and Application specific, where the Application DiC will
-fallback to the environment DiC when something unknown is requested. Below are the three most important methods:
+fallback to the environment DiC when something unknown is requested. Below are the most important methods relating to
+the DiC:
 
-```php
-<?php
+    $session_classname = $dic->get_class('Session');
 
-$session_classname = $dic->get_class('Session');
-// Can return whatever you configure as the default Session driver, for example 'Fuel\\Core\\Session\\Cookie'.
-// When the class is unknown it returns the given classname unmodified.
+`get_class()` can return whatever you configure as the default Session driver, for example
+'Fuel\\Core\\Session\\Cookie'. When the class is unknown it returns the given classname unmodified.
 
-$session = $dic->forge('Session');
-// Returns an instance of the class that get_class() returns
-// Has a global function _forge() available that calls this on the active Application's DiC
-// You can also register & name it with the objects container while forging:
-$session = $dic->forge(array('my_session', 'Session'));
+    $session = $dic->forge('Session');
+    $session = $dic->forge(array('my_session', 'Session'));
 
-$session = $dic->get_object('Session', 'name');
-// Retrieves an object from the DiC for a specific class, without the 'name' param it will
-// create a default instance when one isn't available yet. Named objects must be registered
-// using set_object() or they'll throw an Exception.
-// If you didn't do it while forging, it can also be done after the fact:
-$dic->set_object('Session', 'name', $session)
-```
+`forge()` returns an instance of the class that get_class() returns on the first argument. You can also register &
+name it as is done in the second example using `array($name, $class)`. When this method is called on an application's
+DiC instance it will automatically call a `set_app(Application\Base $app)` method on the new instance when available,
+to provide the parent Application reference.
+
+    $session = $dic->get_object('Session', 'name');
+
+`get_object()` retrieves an object from the DiC for a specific class, without the 'name' param it will create a
+default instance when one isn't available yet (default instances are specific to the DiC instance and don't fallback).
+Named objects must be registered or they'll throw an Exception.
+
+    $dic->set_object('Session', 'name', $session)
+
+`set_object()` allows you to register an object with the DiC if you didn't do it during forging.
 
 ### Environment superobject
 
