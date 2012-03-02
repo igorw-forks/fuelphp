@@ -5,8 +5,8 @@
  * @package  App
  */
 
-_env()->register_application('app', 'App');
+$env->register_application('app', 'App');
 
 // Forge and return your Application Package object
-return _forge('Loader:Package')
+return $env->forge('Loader:Package')
 	->set_path(__DIR__);

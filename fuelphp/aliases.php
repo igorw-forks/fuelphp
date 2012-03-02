@@ -38,7 +38,7 @@ namespace Classes\Loader
 
 namespace Classes\Presenter
 {
-	abstract class Presenter extends \Fuel\Kernel\Presenter\Base {}
+	abstract class Presenter extends \Fuel\Core\Presenter\Base {}
 }
 
 namespace Classes\Request
@@ -59,15 +59,15 @@ namespace Classes\Route
 	abstract class Base extends \Fuel\Kernel\Route\Base {}
 	class Fuel extends \Fuel\Kernel\Route\Fuel {}
 
-	class Task extends \Fuel\Core\Route\Task {}
+	class Task extends \Fuel\Kernel\Route\Task {}
 }
 
 namespace Classes\Task
 {
-	class Base extends \Fuel\Core\Task\Base {}
+	class Base extends \Fuel\Kernel\Task\Base {}
 }
 
 namespace Classes\View
 {
-	class View extends \Fuel\Kernel\View\Base {}
+	class Base extends \Fuel\Kernel\View\Base {}
 }
