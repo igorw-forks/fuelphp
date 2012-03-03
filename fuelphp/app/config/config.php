@@ -4,14 +4,25 @@ use Fuel\Kernel\Log;
 
 return array(
 	/**
+	 * Settings for cookies
+	 */
+	'cookie' => $app->forge(array('cookie', 'Config'), array(
+		'lifetime'   => 0,
+		'path'       => '/',
+		'domain'     => null,
+		'secure'     => false,
+		'http_only'  => false,
+	), 'cookie', $config),
+
+	/**
 	 * Basic settings for working with files
 	 */
-	'file' => array(
+	'file' => $app->forge(array('file', 'Config'), array(
 		'chmod' => array(
 			'files' => 0666,
 			'folders' => 0777,
 		),
-	),
+	), 'file', $config),
 
 	/**
 	 * Settings for logging
