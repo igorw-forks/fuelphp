@@ -6,23 +6,23 @@ return array(
 	/**
 	 * Settings for cookies
 	 */
-	'cookie' => $app->forge(array('cookie', 'Config'), array(
+	'cookie' => $new('cookie', array(
 		'lifetime'   => 0,
 		'path'       => '/',
 		'domain'     => null,
 		'secure'     => false,
 		'http_only'  => false,
-	), 'cookie', $config),
+	)),
 
 	/**
 	 * Basic settings for working with files
 	 */
-	'file' => $app->forge(array('file', 'Config'), array(
+	'file' => $new('file', array(
 		'chmod' => array(
 			'files' => 0666,
 			'folders' => 0777,
 		),
-	), 'file', $config),
+	)),
 
 	/**
 	 * Settings for logging
