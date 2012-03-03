@@ -28,9 +28,11 @@ return array(
 	 * Array of observers indexed by name and as value either a callback or array(callback, array-events)
 	 */
 	'observers' => array(
+		/*
 		'logging' => function ($event, $source = null, $method = '') use ($app)
 		{
 			$app->get_object('Log')->info($event, $method);
 		},
+		*/
 	),
 );
