@@ -1,19 +1,36 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
+use App\Presenter;
 use Classes;
 
 class Welcome extends Classes\Controller\Base
 {
 	public function action_index()
 	{
-		return '<p><strong>Homepage</strong></p>';
+		return $this->app->forge('App\\Presenter\\Welcome');
 	}
 
-	public function action_catchall()
+	public function action_view()
 	{
 		$view = $this->app->forge('View', 'welcome');
-		$view->body = '<p><strong>Catch-all: </strong>'.implode('/', func_get_args()).'</p>';
+		$view->version = \Fuel\Kernel\Environment::VERSION;
+		$view->input = $this->app->env->input;
 		return $view;
+	}
+
+	public function action_baseline()
+	{
+		return '<h1>View- and Presenterless action</h1>
+
+<p>
+	<strong>Time elapsed:</strong> {exec_time}s<br />
+	<strong>Memory usage:</strong> {mem_usage} MB<br />
+	<strong>Peak memory usage:</strong> {mem_peak_usage} MB
+</p>
+
+<h3>Events</h3>
+
+{events}';
 	}
 }

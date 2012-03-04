@@ -9,4 +9,5 @@ $env->register_application('app', 'App');
 
 // Forge and return your Application Package object
 return $env->forge('Loader:Package')
-	->set_path(__DIR__);
+	->set_path(__DIR__)
+	->set_namespace('App');

@@ -34,23 +34,30 @@ $app = $env->loader->load_application('app', function() {});
 /**
  * Run the app and output the response
  */
-echo $app->request($env->input->uri())->execute()->response()->send_headers();
+$response = $app->request($env->input->uri())->execute()->response();
+$response->send_headers();
 
-?>
+/**
+ * Compile events into HTML list
+ */
+$events = '';
+foreach ($env->profiler()->events() as $timestamp => $event)
+{
+	$events .= '<li>'.$event.'</li>';
+}
 
-<p>
-	<strong>Time elapsed:</strong> <?php echo round($env->profiler()->time_elapsed(), 5); ?> s<br />
-	<strong>Memory usage:</strong> <?php echo round($env->profiler()->mem_usage() / 1000000, 4); ?> MB<br />
-	<strong>Peak memory usage:</strong> <?php echo round($env->profiler()->mem_usage(true) / 1000000, 4); ?> MB
-</p>
-
-<h3>Events</h3>
-
-<ul>
-	<?php
-	foreach ($env->profiler()->events() as $timestamp => $event)
-	{
-		echo '<li>'.$event.'</li>';
-	}
-	?>
-</ul>
+echo str_replace(
+	array(
+		'{exec_time}',
+		'{mem_usage}',
+		'{mem_peak_usage}',
+		'{events}',
+	),
+	array(
+		round($env->profiler()->time_elapsed(), 5),
+		round($env->profiler()->mem_usage() / 1000000, 4),
+		round($env->profiler()->mem_usage(true) / 1000000, 4),
+		'<ul>'.$events.'</ul>',
+	),
+	$response
+);

@@ -38,7 +38,7 @@ namespace Classes\Loader
 
 namespace Classes\Presenter
 {
-	abstract class Presenter extends \Fuel\Core\Presenter\Base {}
+	abstract class Base extends \Fuel\Core\Presenter\Base {}
 }
 
 namespace Classes\Request
