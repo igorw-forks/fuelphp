@@ -39,7 +39,18 @@ echo $app->request($env->input->uri())->execute()->response()->send_headers();
 ?>
 
 <p>
-	<strong>Time elapsed:</strong> <?php echo round($env->time_elapsed(), 5); ?> s<br />
-	<strong>Memory usage:</strong> <?php echo round($env->mem_usage() / 1000000, 4); ?> MB<br />
-	<strong>Peak memory usage:</strong> <?php echo round($env->mem_usage(true) / 1000000, 4); ?> MB
+	<strong>Time elapsed:</strong> <?php echo round($env->profiler()->time_elapsed(), 5); ?> s<br />
+	<strong>Memory usage:</strong> <?php echo round($env->profiler()->mem_usage() / 1000000, 4); ?> MB<br />
+	<strong>Peak memory usage:</strong> <?php echo round($env->profiler()->mem_usage(true) / 1000000, 4); ?> MB
 </p>
+
+<h3>Events</h3>
+
+<ul>
+	<?php
+	foreach ($env->profiler()->events() as $timestamp => $event)
+	{
+		echo '<li>'.$event.'</li>';
+	}
+	?>
+</ul>
