@@ -10,6 +10,6 @@ class Welcome extends Classes\Presenter\Base
 	{
 		$this->presenter  = true;
 		$this->version    = Environment::VERSION;
-		$this->input      = Environment::instance()->input;
+		$this->set('input', Environment::instance()->input, false);
 	}
 }
