@@ -36,10 +36,14 @@ $app = $env->loader->load_application('app', function() {});
  */
 $response = $app->request($env->input->uri())->execute()->response();
 $response->send_headers();
+$response = (string) $response->body();
 
 /**
- * Compile events into HTML list
+ * Compile profiling data
  */
+$exec_time = round($env->profiler()->time_elapsed(), 5);
+$mem_usage = round($env->profiler()->mem_usage() / 1000000, 4);
+$mem_peak_usage = round($env->profiler()->mem_usage(true) / 1000000, 4);
 $events = '';
 foreach ($env->profiler()->events() as $timestamp => $event)
 {
@@ -50,17 +54,7 @@ foreach ($env->profiler()->events() as $timestamp => $event)
  * Output the response body and replace the profiling values
  */
 echo str_replace(
-	array(
-		'{exec_time}',
-		'{mem_usage}',
-		'{mem_peak_usage}',
-		'{events}',
-	),
-	array(
-		round($env->profiler()->time_elapsed(), 5),
-		round($env->profiler()->mem_usage() / 1000000, 4),
-		round($env->profiler()->mem_usage(true) / 1000000, 4),
-		'<ul>'.$events.'</ul>',
-	),
+	array('{exec_time}', '{mem_usage}', '{mem_peak_usage}', '{events}'),
+	array($exec_time,    $mem_usage,    $mem_peak_usage,    '<ul>'.$events.'</ul>'),
 	$response
 );

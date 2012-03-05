@@ -87,7 +87,7 @@
 			<div style="float:left; width: 46%; margin-top: 15px;">
 				<p>
 					<strong>Method: </strong> <?php echo $input->method(); ?><br />
-					<strong>URI: </strong> <?php echo $input->uri(); ?><br />
+					<strong>URI: </strong> <?php echo $input->uri() ?: '/'; ?><br />
 					<strong>Query string: </strong> <?php echo json_encode($input->query_string()); ?><br />
 				</p>
 
