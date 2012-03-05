@@ -15,6 +15,8 @@
 define('DOCROOT', __DIR__.'/');
 define('FUELPATH', DOCROOT.'../fuelphp/');
 define('APPPATH', FUELPATH.'app/');
+define('FUEL_INIT_TIME', microtime(true));
+define('FUEL_INIT_MEM', memory_get_usage());
 
 /**
  * Setup environment
