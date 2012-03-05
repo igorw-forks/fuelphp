@@ -5,6 +5,7 @@
  * @package  App
  */
 
+namespace App;
 use Classes\Application;
 use Classes\Route\Fuel as Route;
 
@@ -13,7 +14,7 @@ use Classes\Route\Fuel as Route;
  *
  * @package  App
  */
-class App extends Application\Base
+class Main extends Application\Base
 {
 	public function router()
 	{

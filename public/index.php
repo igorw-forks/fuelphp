@@ -32,7 +32,7 @@ $env = Environment::instance()->init(array(
 $app = $env->loader->load_application('app', function() {});
 
 /**
- * Run the app and output the response
+ * Run the app and output the response headers
  */
 $response = $app->request($env->input->uri())->execute()->response();
 $response->send_headers();
@@ -46,6 +46,9 @@ foreach ($env->profiler()->events() as $timestamp => $event)
 	$events .= '<li>'.$event.'</li>';
 }
 
+/**
+ * Output the response body and replace the profiling values
+ */
 echo str_replace(
 	array(
 		'{exec_time}',

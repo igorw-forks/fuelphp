@@ -5,7 +5,7 @@
  * @package  App
  */
 
-$env->register_application('app', 'App');
+$env->register_application('app', 'App\\Main');
 
 // Forge and return your Application Package object
 return $env->forge('Loader:Package')
