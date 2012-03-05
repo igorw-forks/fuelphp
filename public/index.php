@@ -47,7 +47,7 @@ $mem_peak_usage = round($env->profiler()->mem_usage(true) / 1000000, 4);
 $events = '';
 foreach ($env->profiler()->events() as $timestamp => $event)
 {
-	$events .= '<li>'.$event.'</li>';
+	$events .= '<li>'.str_pad($timestamp, 17, '0').' :: '.implode(' :: ', $event).'</li>';
 }
 
 /**
