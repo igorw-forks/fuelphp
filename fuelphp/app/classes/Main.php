@@ -31,8 +31,11 @@ class Main extends Application\Base
 		// Clean normal controller routes
 		$this->routes = array();
 
+		// Change default Route class for DiC forge
+		$this->dic->set_class('Route', 'Fuel\\Kernel\\Route\\Task');
+
 		// Add Task routes
-		$this->add_route('main_task', $this->forge('Route:Task', '(.*)', '$1'));
+		$this->add_route('(.*)', '$1');
 	}
 
 	public function config()
