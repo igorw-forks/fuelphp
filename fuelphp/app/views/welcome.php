@@ -82,7 +82,7 @@
 	</div>
 	<div class="container">
 		<div class="hero-unit">
-			<h1><?php echo isset($presenter) ? 'Presenter demonstration' : 'View demonstration'; ?></h1>
+			<h1>Welcome to FuelPHP 2.0</h1>
 
 			<div style="float:left; width: 46%; margin-top: 15px;">
 				<p>
@@ -108,22 +108,26 @@
 		<div class="row">
 			<div class="span-one-third">
 				<h2>Get Started</h2>
-				<p>The controller generating this page is found at <code>APPPATH/classes/controller/welcome.php</code>.</p>
-				<p>This view can be found at <code>APPPATH/views/welcome/index.php</code>.</p>
-				<p>You can modify these files to get your application started quickly.</p>
+				<p>The controller generating this page is found at
+					<code>fuelphp/app/classes/Controller/Welcome.php</code>.</p>
+				<?php if (isset($presenter)): ?>
+					<p>This presenter can be found at <code>fuelphp/app/classes/Presenter/Welcome.php</code>.</p>
+				<?php endif; ?>
+				<p>This view can be found at <code>fuelphp/app/views/welcome.php</code>.</p>
 			</div>
 			<div class="span-one-third">
 				<h2>Learn</h2>
-				<p>The best way to learn FuelPHP is reading through the <a href="http://docs.fuelphp.com">Documentation</a>.</p>
-				<p>Another good resource is the <a href="http://fuelphp.com/forums">Forums</a>.  They are fairly active, and you can usually get a response quickly.</p>
+				<p>As FuelPHP is still in development there is no documentation yet. There is however an included
+					<a href="https://github.com/fuelphp/fuelphp#readme">README.md</a> and the API docs are already
+					parsed into <a href="http://fueldepot.exite.eu/api/version/4">Fuel Depot</a>.</p>
 			</div>
 			<div class="span-one-third">
 				<h2>Contribute</h2>
-				<p>FuelPHP wouldn't exist without awesome contributions from the community.  Use the links below to get contributing.</p>
+				<p>FuelPHP wouldn't exist without awesome contributions from the community. Use the links below to
+					get contributing.</p>
 				<ul>
-					<li><a href="http://docs.fuelphp.com/general/coding_standards.html">Coding Standards</a></li>
-					<li><a href="http://github.com/fuel/fuel">GitHub Respository</a></li>
-					<li><a href="http://fuelphp.com/contribute/issue-tracker">Issue Tracker</a></li>
+					<li><a href="https://github.com/fuelphp/fuelphp/wiki/Coding-Standards">Coding Standards</a></li>
+					<li><a href="http://github.com/fuelphp">GitHub Respositories</a></li>
 				</ul>
 			</div>
 		</div>
