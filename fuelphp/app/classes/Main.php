@@ -22,6 +22,8 @@ class Main extends Application\Base
 	}
 
 	/**
+	 * Fuel Magic Method for Oil
+	 *
 	 * Overwrites routes when called through "php oil app ..."
 	 *
 	 * @return  void

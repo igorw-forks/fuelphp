@@ -11,7 +11,7 @@ use Classes;
 /**
  * Example Task
  *
- * Can be called using "php oil app test"
+ * Can be called using "php oil app app test"
  *
  * @package  App
  */
