@@ -21,6 +21,20 @@ class Main extends Application\Base
 		$this->add_route('/', 'Welcome');
 	}
 
+	/**
+	 * Overwrites routes when called through "php oil app ..."
+	 *
+	 * @return  void
+	 */
+	public function _oil_router()
+	{
+		// Clean normal controller routes
+		$this->routes = array();
+
+		// Add Task routes
+		$this->add_route('main_task', $this->forge('Route:Task', '(.*)', '$1'));
+	}
+
 	public function config()
 	{
 		return array(

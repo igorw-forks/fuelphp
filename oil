@@ -42,7 +42,7 @@ try
 	{
 		$uri .= '/'.$arg;
 	}
-	$app->request($uri)->execute();
+	$cli->write($app->request($uri)->execute()->response());
 }
 catch (\Exception $e)
 {
