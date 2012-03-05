@@ -15,7 +15,7 @@ class Welcome extends Classes\Controller\Base
 	{
 		$view = $this->app->forge('View', 'welcome');
 		$view->version = \Fuel\Kernel\Environment::VERSION;
-		$view->input = $this->app->env->input;
+		$view->set('input', $this->app->env->input, false);
 		return $view;
 	}
 
