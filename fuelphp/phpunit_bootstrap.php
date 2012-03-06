@@ -12,8 +12,8 @@
  * Setup environment
  */
 require __DIR__ . '/fuel/kernel/classes/Environment.php';
-use Fuel\Kernel\Environment;
-$env = Environment::instance()->init(array(
+$env = new Fuel\Kernel\Environment();
+$env->init(array(
 	'name'  => 'testing',
 	'path'  => __DIR__.'/',
 ));

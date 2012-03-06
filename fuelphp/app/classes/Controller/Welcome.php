@@ -8,7 +8,9 @@ class Welcome extends Classes\Controller\Base
 {
 	public function action_index()
 	{
-		return $this->app->forge('App\\Presenter\\Welcome');
+		$presenter = $this->app->forge('App\\Presenter\\Welcome');
+		$presenter->set('input', $this->app->env->input, false);
+		return $presenter;
 	}
 
 	public function action_view()

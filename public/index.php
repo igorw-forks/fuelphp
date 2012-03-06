@@ -22,8 +22,8 @@ define('FUEL_INIT_MEM', memory_get_usage());
  * Setup environment
  */
 require FUELPATH.'fuel/kernel/classes/Environment.php';
-use Fuel\Kernel\Environment;
-$env = Environment::instance()->init(array(
+$env = new Fuel\Kernel\Environment();
+$env->init(array(
 	'name'  => isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : 'development',
 	'path'  => FUELPATH,
 ));
