@@ -61,7 +61,7 @@ return array(
 	'errors' => array(
 		'view_error'   => 'error/dev',
 		'view_fatal'   => 'error/500_dev',
-		'continue_on'  => array(E_NOTICE, E_WARNING, E_DEPRECATED, E_STRICT, E_USER_NOTICE, E_USER_WARNING, E_USER_DEPRECATED),
+		'continue_on'  => array(E_NOTICE, E_WARNING, E_DEPRECATED, E_STRICT, E_COMPILE_WARNING, E_USER_NOTICE, E_USER_WARNING, E_USER_DEPRECATED),
 		'throttle'     => 10,
 	),
 );

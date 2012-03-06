@@ -12,6 +12,7 @@ composer.lock
 nbproject/
 fuelphp/.composer/
 fuelphp/fuel/
+fuelphp/doctrine/
 fuelphp/twig/
 fuelphp/dflydev/
 fuelphp/app/resources/cache/

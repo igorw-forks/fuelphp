@@ -9,4 +9,4 @@
  */
 
 // Returns the specialized Loader for Composer packages
-return _forge('Loader_Composer');
+return $env->forge('Loader:Composer');

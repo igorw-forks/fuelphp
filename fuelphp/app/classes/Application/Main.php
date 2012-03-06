@@ -5,7 +5,7 @@
  * @package  App
  */
 
-namespace App;
+namespace App\Application;
 use Classes\Application;
 use Classes\Route\Fuel as Route;
 
