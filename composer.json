@@ -3,12 +3,15 @@
 		"vendor-dir": "fuelphp"
 	},
 	"require": {
-		"php": ">=5.3.0",
-		"fuel/kernel": "dev-master",
-		"fuel/core": "dev-master",
-		"fuel/oil": "dev-master",
-		"fuel/legacy": "dev-master",
-		"dflydev/markdown": "dev-master",
-		"twig/twig": "dev-master"
+		"php":          ">=5.3.0",
+
+		"fuel/kernel":  "dev-master",
+		"fuel/core":    "dev-master",
+		"fuel/oil":     "dev-master",
+		"fuel/static":  "dev-master",
+		"fuel/legacy":  "dev-master",
+
+		"dflydev/markdown":  ">=1.0.2,<1.1.0",
+		"twig/twig":         ">=1.6.1"
 	}
 }
