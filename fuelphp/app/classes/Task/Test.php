@@ -11,7 +11,9 @@ use Classes;
 /**
  * Example Task
  *
- * Can be called using "php oil app app test"
+ * Can be called using "php oil r <appname>/<taskname>" which will
+ * be "php oil r app/test" for this one's index action or in full
+ * "php oil r app/test/index"
  *
  * @package  App
  */
