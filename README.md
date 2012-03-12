@@ -57,10 +57,10 @@ the DiC:
 'Fuel\\Core\\Session\\Cookie'. When the class is unknown it returns the given classname unmodified.
 
     $session = $dic->forge('Session');
-    $session = $dic->forge(array('my_session', 'Session'));
+    $session = $dic->forge(array('Session', 'my_session'));
 
 `forge()` returns an instance of the class that get_class() returns on the first argument. You can also register &
-name it as is done in the second example using `array($name, $class)`. Any additional arguments past the first one are
+name it as is done in the second example using `array($class, $name)`. Any additional arguments past the first one are
 passed on to the constructor. When this method is called on an application's DiC instance it will automatically call a
 `set_app(Application\Base $app)` method on the new instance when available, to provide the parent Application reference.
 
