@@ -30,7 +30,6 @@ $env->init(array(
  * Initialize Application in package 'app'
  */
 $app = $env->loader->load_application('fuel/oil', function() {});
-$cli = $app->get_object('Cli');
 
 /**
  * Run Oil
@@ -38,17 +37,17 @@ $cli = $app->get_object('Cli');
 try
 {
 	// Generates a URI based on the commandline input
-	for ($uri = '', $i = 1; ($arg = $cli->option($i)) and strncmp($arg, '-', 1) != 0; $i++)
+	for ($uri = '', $i = 1; ($arg = $env->cli()->option($i)) and strncmp($arg, '-', 1) != 0; $i++)
 	{
 		$uri .= '/'.$arg;
 	}
-	$cli->write($app->request($uri)->execute()->response());
+	$env->cli()->write($app->request($uri)->execute()->response());
 }
 catch (\Exception $e)
 {
-	$cli->error(get_class($e).': '.$e->getMessage());
-	$cli->error('    file: '.$e->getFile());
-	$cli->error('    line: '.$e->getLine());
-	$cli->beep();
-	$cli->option('speak') and `say --voice="Trinoids" "{$e->getMessage()}"`;
+	$env->cli()->error(get_class($e).': '.$e->getMessage());
+	$env->cli()->error('    file: '.$e->getFile());
+	$env->cli()->error('    line: '.$e->getLine());
+	$env->cli()->beep();
+	$env->cli()->option('speak') and `say --voice="Trinoids" "{$e->getMessage()}"`;
 }

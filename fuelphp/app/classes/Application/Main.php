@@ -16,7 +16,7 @@ use Classes\Route\Fuel as Route;
  */
 class Main extends Application\Base
 {
-	public function router()
+	public function set_routes()
 	{
 		$this->add_route('/', 'Welcome');
 	}
@@ -28,7 +28,7 @@ class Main extends Application\Base
 	 *
 	 * @return  void
 	 */
-	public function _oil_router()
+	public function set_oil_routes()
 	{
 		// Clean normal controller routes
 		$this->routes = array();
@@ -40,7 +40,7 @@ class Main extends Application\Base
 		$this->add_route('(.*)', '$1');
 	}
 
-	public function config()
+	public function set_config()
 	{
 		return array(
 			'log_level' => 0,
