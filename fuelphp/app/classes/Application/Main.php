@@ -19,6 +19,8 @@ class Main extends Application\Base
 	public function set_routes()
 	{
 		$this->add_route('/', 'Welcome');
+
+		parent::set_routes();
 	}
 
 	/**
