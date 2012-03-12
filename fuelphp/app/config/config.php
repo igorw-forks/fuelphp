@@ -31,7 +31,7 @@ return array(
 	 */
 	'log' => array(
 		'date_format' => 'Y-m-d H:i:s',
-		'flags' => Log::L_ALL & ~Log::L_INFO,
+		// 'flags' => Log::L_ALL & ~Log::L_INFO,
 		// 'path' => $app->loader->path().'resources/logs/',
 	),
 
