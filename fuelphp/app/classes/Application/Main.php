@@ -17,7 +17,7 @@ use Classes\Route\Fuel as Route;
  */
 class Main extends Application\Base
 {
-	public function set_routes()
+	protected function set_routes()
 	{
 		$this->add_route('/', 'Welcome');
 
@@ -43,7 +43,7 @@ class Main extends Application\Base
 		$this->add_route('(.*)', '$1');
 	}
 
-	public function set_config(Config $config)
+	protected function set_config(Config $config)
 	{
 		$config->set(array(
 			'log_level' => 0,
