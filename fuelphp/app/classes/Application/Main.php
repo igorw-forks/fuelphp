@@ -6,6 +6,7 @@
  */
 
 namespace App\Application;
+use Fuel\Kernel\Data\Config;
 use Classes\Application;
 use Classes\Route\Fuel as Route;
 
@@ -42,10 +43,13 @@ class Main extends Application\Base
 		$this->add_route('(.*)', '$1');
 	}
 
-	public function set_config()
+	public function set_config(Config $config)
 	{
-		return array(
+		$config->set(array(
 			'log_level' => 0,
-		);
+		));
+
+		// Return the parent method which runs ->load('config.php') on it
+		return parent::set_config($config);
 	}
 }
