@@ -1,7 +1,7 @@
 # FuelPHP 2.0-alpha
 
 This is very early alpha development of the next generation of FuelPHP. Almost nothing is fixed at this point thus it
-is very much not recommended for production use.
+is very much not recommended for production use.  
 While this is written anew from the ground up, it still very much relies on v1.x for much of its functionality.
 
 ## How to install
@@ -33,7 +33,7 @@ considered a micro-framework upon which the Core is build.
 
 Applications will have wrapper classes that get instantiated to work with the Package as an Application instead of a
 normal package. All packages that are loaded into an Application may be routable within that application, but only
-if you mark them as such.
+if you mark them as such.  
 Defining of the routes has also been moved outside the config dir and into the Application class.
 
 ### Unified and Package based Class and File loading
@@ -41,10 +41,12 @@ Defining of the routes has also been moved outside the config dir and into the A
 Instead of separate loaders for classes and files have these been replaced by Package Loader objects. These will handle
 both the classloading of the autoloader and the fileloads.
 
-### Dependency Injection Containers and class extensibility
+### Dependency Injection Containers and 'inheritance injection'
 
-First of all we'll keep the global namespace clean from now on (except when you load legacy support). But we like the
-way you can alias classes to global from the Core and extend them in a Package later without editing the Application.
+First of all we'll keep the global namespace clean from now on (except when you load legacy support). But the
+'inheritance injection' to the global namespace was very powerful. Allowing you, for example, to extend the base
+Controller and have its extensions available in the `Controller_Template` and `Controller_Rest` as well (as those extend
+the alias, not the original classname).  
 For that reason we still provide these aliases but they're aliased to a `Classes\` namespace.
 
 Next we implemented a DiC. This will be available globally and Application specific, where the Application DiC will
@@ -74,18 +76,24 @@ Named objects must be registered or they'll throw an Exception.
 
 `set_object()` allows you to register an object with the DiC if you didn't do it during forging.
 
-### Environment superobject
+### Environment superobject and Application objects
 
 The initialization of Fuel has been divided up into setting up the Environment and only after that is the Application
 initialized. The environment settings entail all those settings that should not or cannot be changed while an
 Application is running but should instead be considered fixed.
+
+Applications are normal packages that have an Application class, either named `Application\Main` within the package
+namespace or has an Application classname registered with the environment. These classes are instantiated when an
+application is loaded and are able to create other Applications to interact with with the environment. This is in some
+ways similar to HMVC but on the application level instead of the Request level (HMVC would be another Request within
+the same application).
 
 ### Simplified Modules and possible in all packages
 
 The concept of Modules has been simplified into a way of structuring your files inside the Package directory. All Views,
 Configs and Language files from a Module are considered the same as those from the parent Package (the latter taking
 precedence). The concept of an 'active' Module has been removed (of which the filepath took precedence over the
-Application).
+Application).  
 They're also no longer limited to the Application directory and can be put into any Package. They must be a
 subnamespace inside that Package and be a subdirectory in the `modules` directory of that Package.
 
@@ -97,7 +105,7 @@ normal `index.php` FC.
 
 Tasks have been reimplemented as specialized Controllers which means their methods require an 'action_' prefix and
 they're inside a subnamespace of the Application. The routing to these Tasks works through normal routing means but
-requires specialized Route objects that route to Tasks instead of Controllers.
+requires specialized Route objects that route to Tasks instead of Controllers.  
 All Oil command-classes have been reimplemented as Tasks.
 
 ### File structure reordering
@@ -115,15 +123,16 @@ Even though both Config and Language had a concept of 'groups' they were just 1 
 is no longer the case. Each Application will have a main Config object that can access its 'children' much like
 before, but those children will be separate objects which can be accessed on their own and are part of the class that
 loaded them.
+
 The Config and Language classes have also both become extensions of the new Data superclass as they share a lot of
-their functionality.
+their functionality. Among which are a new default values convention and very basic settings validation.
 
 ### ViewModel becomes Presenter
 
 As the name lead to much confusion and discussion about CamelCasing of the name we decided that it is time for a better
 name. ViewModel is the name the concept has in MVVM (Model-View-ViewModel), but it is about as similar to the MVP
 (Model-View-Presenter) concept and that provides better clarity about its function. They will remain very much optional
-though and Fuel will remain MVC.
+though and Fuel will remain MVC.  
 The Presenter class has also become a superset of the View class instead of wrapping a View object.
 
 ### Parser package integrated into the Kernel/Core
@@ -148,14 +157,35 @@ return $app->forge('Migration')
 	});
 ```
 
-## Legacy support
+### Separating the Query Builder from the core
 
-We'll provide as much backwards compatibility as is possible by offering an extra package that extends many classes to
-mimic how they worked before or provides a static interface to a core class. Some things will need a bit of search &
-replace, though doable project wide if your IDE/texteditor is capable of that. Other things will require a little bit
-of rewriting, migrations as mentioned are an example of that.
-And a few things will not be backwards compatible, especially core extensions are likely to break in a way that will
-require extensive rewriting.
+The Query Builder (Database classes from 1.x) will be completely rewritten and be developed in its own package separate
+from the Core or Kernel. It will have better support for non-MySQL and even support noSQL databases. It will also be
+merged with the DBUtil class from 1.x and those will be an integral part of the package.
+
+This will mean that the QB will be considered a dependency an no Core or Kernel class will require it anymore, though
+drivers using the QB will be. Those should be easily replaceable though, to allow you to use whichever system you might
+like instead of the 'default'.
+
+### The Static interface
+
+The Kernel and Core packages will no longer contain any static classes at all as those break encapsulation. We are
+however aware of how popular they are and how much they facilitate rapid development. For those who do not mind the
+limitations (which will be no bigger than those currently imposed by them in 1.x) there is a static interface package
+available. This will allow usage like `Validation::forge()` instead of `$this->app->forge('Validation')` but more
+importantly they will support all methods available on an instance as a static interface. Thus any method available
+on the `Fuel\Core\Validation\Base` object will be available on the `Validation` class through a singleton instance
+of Validation inside it.  
+This will be done using `__callStatic()` and thus always keep up with any changes to the Core, never lagging behind.
+
+### Legacy support
+
+We'll also provide as much backwards compatibility for 1.x as is possible. This is done by an extra package that
+extends the Static package to mimic how they worked before where the interface changed. Some things will need a bit 
+of search & replace, though doable project wide if your IDE/texteditor is capable of that. The legacy package should
+get this to an absolute minimum though.  
+Other things will require a little bit of rewriting, migrations are an example of that as mentioned. Any Core 
+extensions will not and cannot be backwards compatible for the most part.
 
 Once we go into beta we will provide two guides on updating:
 
