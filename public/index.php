@@ -31,21 +31,21 @@ $env->init(array(
 /**
  * Initialize Application in package 'app'
  */
-$app = $env->loader->load_application('app', function() {});
+$app = $env->loader->loadApplication('app', function() {});
 
 /**
  * Run the app and output the response headers
  */
 $response = $app->request($env->input->uri())->execute()->response();
-$response->send_headers();
+$response->sendHeaders();
 $response = (string) $response->body();
 
 /**
  * Compile profiling data
  */
-$exec_time = round($env->profiler()->time_elapsed(), 5);
-$mem_usage = round($env->profiler()->mem_usage() / 1000000, 4);
-$mem_peak_usage = round($env->profiler()->mem_usage(true) / 1000000, 4);
+$execTime = round($env->profiler()->timeElapsed(), 5);
+$memUsage = round($env->profiler()->memUsage() / 1000000, 4);
+$memPeakUsage = round($env->profiler()->memUsage(true) / 1000000, 4);
 $events = '';
 foreach ($env->profiler()->events() as $timestamp => $event)
 {
@@ -57,6 +57,6 @@ foreach ($env->profiler()->events() as $timestamp => $event)
  */
 echo str_replace(
 	array('{exec_time}', '{mem_usage}', '{mem_peak_usage}', '{events}'),
-	array($exec_time,    $mem_usage,    $mem_peak_usage,    '<ul>'.$events.'</ul>'),
+	array($execTime,     $memUsage,     $memPeakUsage,      '<ul>'.$events.'</ul>'),
 	$response
 );

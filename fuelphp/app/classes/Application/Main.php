@@ -17,11 +17,11 @@ use Classes\Route\Fuel as Route;
  */
 class Main extends Application\Base
 {
-	protected function set_routes()
+	protected function setRoutes()
 	{
-		$this->add_route('/', 'Welcome');
+		$this->addRoute('/', 'Welcome');
 
-		parent::set_routes();
+		parent::setRoutes();
 	}
 
 	/**
@@ -31,25 +31,25 @@ class Main extends Application\Base
 	 *
 	 * @return  void
 	 */
-	public function set_oil_routes()
+	public function setOilRoutes()
 	{
 		// Clean normal controller routes
 		$this->routes = array();
 
 		// Change default Route class for DiC forge
-		$this->dic->set_class('Route', 'Fuel\\Kernel\\Route\\Task');
+		$this->dic->setClass('Route', 'Fuel\\Kernel\\Route\\Task');
 
 		// Add Task routes
-		$this->add_route('(.*)', '$1');
+		$this->addRoute('(.*)', '$1');
 	}
 
-	protected function set_config(Config $config)
+	protected function setConfig(Config $config)
 	{
 		$config->set(array(
 			'log_level' => 0,
 		));
 
 		// Return the parent method which runs ->load('config.php') on it
-		return parent::set_config($config);
+		return parent::setConfig($config);
 	}
 }

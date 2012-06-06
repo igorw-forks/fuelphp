@@ -11,7 +11,7 @@ return array(
 		'path'       => '/',
 		'domain'     => null,
 		'secure'     => false,
-		'http_only'  => false,
+		'httpOnly'  => false,
 	)),
 
 	/**
@@ -30,7 +30,7 @@ return array(
 	 * Available flags: L_NONE, L_ERROR, L_WARNING, L_NOTICE, L_INFO, L_DEPRECATED, L_ALL
 	 */
 	'log' => array(
-		'date_format' => 'Y-m-d H:i:s',
+		'dateFormat' => 'Y-m-d H:i:s',
 		// 'flags' => Log::L_ALL & ~Log::L_INFO,
 		// 'path' => $app->loader->path().'resources/logs/',
 	),
@@ -42,7 +42,7 @@ return array(
 		/*
 		'logging' => function ($event, $source = null, $method = '') use ($app)
 		{
-			$app->get_object('Log')->info($event, $method);
+			$app->getObject('Log')->info($event, $method);
 		},
 		*/
 	),
@@ -51,17 +51,17 @@ return array(
 	 * Application Security settings
 	 */
 	'security' => array(
-		'uri_filter'     => true,
-		'output_filter'  => true,
+		'uriFilter'     => true,
+		'outputFilter'  => true,
 	),
 
 	/**
 	 * Error reporting settings
 	 */
 	'errors' => array(
-		'view_error'   => 'error/dev',
-		'view_fatal'   => 'error/500_dev',
-		'continue_on'  => array(E_NOTICE, E_WARNING, E_DEPRECATED, E_STRICT, E_COMPILE_WARNING, E_USER_NOTICE, E_USER_WARNING, E_USER_DEPRECATED),
+		'viewError'   => 'error/dev',
+		'viewFatal'   => 'error/500_dev',
+		'continueOn'  => array(E_NOTICE, E_WARNING, E_DEPRECATED, E_STRICT, E_COMPILE_WARNING, E_USER_NOTICE, E_USER_WARNING, E_USER_DEPRECATED),
 		'throttle'     => 10,
 	),
 );

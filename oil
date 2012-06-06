@@ -29,7 +29,7 @@ $env->init(array(
 /**
  * Initialize Application in package 'app'
  */
-$app = $env->loader->load_application('fuel/oil', function() {});
+$app = $env->loader->loadApplication('fuel/oil', function() {});
 
 /**
  * Run Oil

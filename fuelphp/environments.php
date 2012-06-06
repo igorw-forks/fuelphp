@@ -39,10 +39,10 @@ return array(
 		return function (Environment $env)
 		{
 			// Uncomment the following line to enable the Core package
-			$env->loader->load_package('fuel/core', Loader::TYPE_CORE);
+			$env->loader->loadPackage('fuel/core', Loader::TYPE_CORE);
 
 			// Uncomment the following line to include Packagist packages autoloader
-			// $env->loader->load_package(array('Composer', $env->forge('Loader.Composer')), Loader::TYPE_CORE);
+			// $env->loader->loadPackage(array('Composer', $env->forge('Loader.Composer')), Loader::TYPE_CORE);
 		};
 	},
 
