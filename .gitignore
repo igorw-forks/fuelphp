@@ -11,10 +11,11 @@ composer.lock
 .idea
 nbproject/
 fuelphp/.composer/
+fuelphp/autoload.php
+fuelphp/composer/
 fuelphp/fuel/
 fuelphp/doctrine/
 fuelphp/twig/
-fuelphp/dflydev/
 fuelphp/app/resources/cache/
 fuelphp/app/resources/logs/
 fuelphp/app/resources/tmp/
