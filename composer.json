@@ -8,7 +8,7 @@
 		"fuel/kernel":  "dev-master",
 		"fuel/core":    "dev-master",
 		"fuel/oil":     "dev-master",
-		"fuel/static":  "dev-master",
-		"fuel/legacy":  "dev-master"
+
+		"doctrine/dbal": ">=2.2.2"
 	}
 }
