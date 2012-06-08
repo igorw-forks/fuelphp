@@ -49,24 +49,6 @@ class Main extends Application\Base
 	}
 
 	/**
-	 * Return named database connection objects
-	 *
-	 * @param   string  $name
-	 * @return  \Doctrine\DBAL\Connection
-	 */
-	public function db($name = 'default')
-	{
-		try
-		{
-			return $this->getObject('DbConnection', $name);
-		}
-		catch (\RuntimeException $e)
-		{
-			return $this->forge(array('DbConnection', $name), $name);
-		}
-	}
-
-	/**
 	 * Some application defaults, these will be overwritten by any config files found
 	 *
 	 * @param   Config  $config
