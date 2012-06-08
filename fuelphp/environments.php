@@ -42,7 +42,7 @@ return array(
 			$env->loader->loadPackage('fuel/core', Loader::TYPE_CORE);
 
 			// Uncomment the following line to include Packagist packages autoloader
-			// $env->loader->addPsrNamespaces(require $env->path('fuel').'composer/autoload_namespaces.php');
+			$env->loader->addPsrNamespaces(require $env->path('fuel').'composer/autoload_namespaces.php');
 		};
 	},
 
