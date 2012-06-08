@@ -4,19 +4,6 @@ use Fuel\Kernel\Log;
 
 return array(
 	/**
-	 * Named DBAL connection configurations
-	 */
-	'db' => $new('db', array(
-		'default' => array(
-			'dbname'    => 'test',
-			'user'      => 'root',
-			'password'  => 'root',
-			'host'      => 'localhost',
-			'driver'    => 'pdo_mysql',
-		),
-	)),
-
-	/**
 	 * Settings for cookies
 	 */
 	'cookie' => $new('cookie', array(

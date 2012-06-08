@@ -17,17 +17,22 @@ use Classes\Route\Fuel as Route;
  */
 class Main extends Application\Base
 {
+	/**
+	 * @var  array  holds an array of named DBAL connections
+	 */
+	public $dbs = array();
+
+	/**
+	 * Configure the application's routes
+	 */
 	protected function setRoutes()
 	{
 		$this->addRoute('/', 'Welcome');
-
 		parent::setRoutes();
 	}
 
 	/**
-	 * Fuel Magic Method for Oil
-	 *
-	 * Overwrites routes when called through "php oil app ..."
+	 * Oil Magic Method: overwrites routes when called through "php oil app ..."
 	 *
 	 * @return  void
 	 */
@@ -43,6 +48,26 @@ class Main extends Application\Base
 		$this->addRoute('(.*)', '$1');
 	}
 
+	/**
+	 * Add necessary application setup
+	 *
+	 * @return  void
+	 */
+	protected function setup()
+	{
+		// Create a variable holding $this to provide to the closure
+		// not neccessary in 5.4 as Closure::bind() is used to assign $this
+		$app = $this;
+
+		require $this->findFile('config/db.php');
+	}
+
+	/**
+	 * Some application defaults, these will be overwritten by any config files found
+	 *
+	 * @param   Config  $config
+	 * @return  void
+	 */
 	protected function setConfig(Config $config)
 	{
 		$config->set(array(
