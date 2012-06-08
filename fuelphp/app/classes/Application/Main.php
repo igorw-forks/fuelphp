@@ -49,17 +49,21 @@ class Main extends Application\Base
 	}
 
 	/**
-	 * Add necessary application setup
+	 * Return named database connection objects
 	 *
-	 * @return  void
+	 * @param   string  $name
+	 * @return  \Doctrine\DBAL\Connection
 	 */
-	protected function setup()
+	public function db($name = 'default')
 	{
-		// Create a variable holding $this to provide to the closure
-		// not neccessary in 5.4 as Closure::bind() is used to assign $this
-		$app = $this;
-
-		require $this->findFile('config/db.php');
+		try
+		{
+			return $this->getObject('DbConnection', $name);
+		}
+		catch (\RuntimeException $e)
+		{
+			return $this->forge(array('DbConnection', $name), $name);
+		}
 	}
 
 	/**
