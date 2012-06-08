@@ -1,20 +1,22 @@
-# FuelPHP 2.0-alpha
+# FuelPHP 2.0-dev
 
-This is very early alpha development of the next generation of FuelPHP. Almost nothing is fixed at this point thus it
-is very much not recommended for production use.  
-While this is written anew from the ground up, it still very much relies on v1.x for much of its functionality.
+This is the development of the next generation of FuelPHP. As the Kernel package is now considered feature complete
+we are moving towards a first beta release. It is still not recommended for production usage.  
+While this is written anew from the ground up, much of the code was ported from v1.x.
 
 ## How to install
 
 Clone or download this repository and run `composer.phar install` from the commandline in the directory where you put
-Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/legacy" and "fuel/oil" packages into the fuelphp
-directory.
+Fuel. That will clone the "fuel/kernel", "fuel/core", "fuel/oil", "doctrine/dbal" packages into the fuelphp directory.  
+If you want to keep using a static interface you need to add `"fuel/static" : "dev-master"` to the main 
+*composer.json* file. You can also add `"fuel/legacy"` in the same way that should allow most of the 1.x API calls on
+the new codebase.
 
 ## Important changes
 
 Below I'll keep a list of important techniques/patterns implemented.
 
-### Adoption of industry standards like Composer/Packagist and PSR-0
+### Adoption of industry standards like Composer/Packagist and PSR-0 & PSR-1
 
 Version 2.0 will include and have its packages setup to be installable using Composer. Also allowing you to easily
 include packages from Packagist.
@@ -23,6 +25,9 @@ By default Fuel will now use the PSR-0 standard for classloading. Its implementa
 fully compatible with PSR-0. For convenience and speed each Package can be given a base namespace that will be required
 and stripped before any class to path conversion takes place. The same goes for modules inside the Package, those
 will have subnamespaces that are required and stripped before conversion as well.
+
+We also decided to adopt PSR-1, which means that instead of `snake_case` names the methods & variablenames are now
+camelCased.
 
 ### Everything is a Package and they'll be routable
 
@@ -39,11 +44,12 @@ Defining of the routes has also been moved outside the config dir and into the A
 ### Unified and Package based Class and File loading
 
 Instead of separate loaders for classes and files have these been replaced by Package Loader objects. These will handle
-both the classloading of the autoloader and the fileloads.
+both the classloading of the autoloader and the fileloads. But the Autoloader will also make all packages available you
+installed through Composer as long as they follow PSR-0 and have their namespace registered.
 
 ### Dependency Injection Containers and 'inheritance injection'
 
-First of all we'll keep the global namespace clean from now on (except when you load legacy support). But the
+First of all we'll keep the global namespace clean from now on (except when you load static/legacy support). But the
 'inheritance injection' to the global namespace was very powerful. Allowing you, for example, to extend the base
 Controller and have its extensions available in the `Controller_Template` and `Controller_Rest` as well (as those extend
 the alias, not the original classname).  
@@ -53,28 +59,28 @@ Next we implemented a DiC. This will be available globally and Application speci
 fallback to the environment DiC when something unknown is requested. Below are the most important methods relating to
 the DiC:
 
-    $session_classname = $dic->get_class('Session');
+    $session_classname = $dic->getClass('Session');
 
-`get_class()` can return whatever you configure as the default Session driver, for example
+`getClass()` can return whatever you configure as the default Session driver, for example
 'Fuel\\Core\\Session\\Cookie'. When the class is unknown it returns the given classname unmodified.
 
     $session = $dic->forge('Session');
-    $session = $dic->forge(array('Session', 'my_session'));
+    $session = $dic->forge(array('Session', 'mySession'));
 
-`forge()` returns an instance of the class that get_class() returns on the first argument. You can also register &
+`forge()` returns an instance of the class that getClass() returns on the first argument. You can also register &
 name it as is done in the second example using `array($class, $name)`. Any additional arguments past the first one are
 passed on to the constructor. When this method is called on an application's DiC instance it will automatically call a
-`set_app(Application\Base $app)` method on the new instance when available, to provide the parent Application reference.
+`_setApp(Application\Base $app)` method on the new instance when available, to provide the parent Application reference.
 
-    $session = $dic->get_object('Session', 'name');
+    $session = $dic->getObject('Session', 'name');
 
-`get_object()` retrieves an object from the DiC for a specific class, without the 'name' param it will create a
+`getObject()` retrieves an object from the DiC for a specific class, without the 'name' param it will create a
 default instance when one isn't available yet (default instances are specific to the DiC instance and don't fallback).
 Named objects must be registered or they'll throw an Exception.
 
-    $dic->set_object('Session', 'name', $session)
+    $dic->setObject('Session', 'name', $session)
 
-`set_object()` allows you to register an object with the DiC if you didn't do it during forging.
+`setObject()` allows you to register an object with the DiC if you didn't do it during forging.
 
 ### Environment superobject and Application objects
 
@@ -157,15 +163,16 @@ return $app->forge('Migration')
 	});
 ```
 
-### Separating the Query Builder from the core
+### Query Builder and ORM removal
 
-The Query Builder (Database classes from 1.x) will be completely rewritten and be developed in its own package separate
-from the Core or Kernel. It will have better support for non-MySQL and even support noSQL databases. It will also be
-merged with the DBUtil class from 1.x and those will be an integral part of the package.
+We needed to get 'back to basics'. Our business is that of creating a framework and developing a Query Builder and
+an ORM alongside that is adding 2 full projects to our main one. There are already many awesome ORMs available that
+are not framework specific and would integrate nicely with FuelPHP (Doctrine, RedBean, Propel, etc).
 
-This will mean that the QB will be considered a dependency an no Core or Kernel class will require it anymore, though
-drivers using the QB will be. Those should be easily replaceable though, to allow you to use whichever system you might
-like instead of the 'default'.
+But the Query Builder also needed to go, we have been unsatisfied with it for some time - especially its lack of 
+real platform independence. We ended up deciding to replace it with Doctrine's DBAL, a fully featured, heavily 
+tested and widely used alternative that does everything we need. FuelPHP will not be tied to DBAL though, but for
+libraries like Session there will be a DBAL-based driver available.
 
 ### The Static interface
 
