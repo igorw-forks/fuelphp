@@ -22,9 +22,10 @@ Version 2.0 will include and have its packages setup to be installable using Com
 include packages from Packagist.
 
 By default Fuel will now use the PSR-0 standard for classloading. Its implementation is actually a superset, but it is
-fully compatible with PSR-0. For convenience and speed each Package can be given a base namespace that will be required
-and stripped before any class to path conversion takes place. The same goes for modules inside the Package, those
-will have subnamespaces that are required and stripped before conversion as well.
+fully compatible with PSR-0. For convenience and speed each Fuel-specific Package can be given a base namespace that 
+will be required and stripped before any class to path conversion takes place (these are not loadable through the 
+Composer autoloader). The same goes for modules inside the Package, those will have subnamespaces that are required 
+and stripped before conversion as well.
 
 We also decided to adopt PSR-1, which means that instead of `snake_case` names the methods & variablenames are now
 camelCased.
