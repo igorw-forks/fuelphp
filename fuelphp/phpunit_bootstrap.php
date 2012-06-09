@@ -11,9 +11,10 @@
 /**
  * Setup environment
  */
-require __DIR__ . '/fuel/kernel/classes/Environment.php';
+require __DIR__ . '/fuel/kernel/classes/Fuel/Kernel/Environment.php';
 $env = new Fuel\Kernel\Environment();
 $env->init(array(
-	'name'  => 'testing',
-	'path'  => __DIR__.'/',
+	'name'        => 'testing',
+	'path'        => __DIR__.'/',
+	'namespaces'  => require __DIR__.'/composer/autoload_namespaces.php',
 ));
