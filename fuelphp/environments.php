@@ -27,8 +27,7 @@ return array(
 	'__default' => function(Environment $env)
 	{
 		// Switch off error display to allow Fuel to handle them
-		// Uses suppression as some setups don't allow ini_set()
-		@ini_set('display_errors', 'Off');
+		// ini_set('display_errors', 'Off');
 
 		// Return array with environment config
 		$env->locale = null;
@@ -40,9 +39,6 @@ return array(
 		{
 			// Uncomment the following line to enable the Core package
 			$env->loader->loadPackage('fuel/core', Loader::TYPE_CORE);
-
-			// Uncomment the following line to include Packagist packages autoloader
-			$env->loader->addPsrNamespaces(require $env->path('fuel').'composer/autoload_namespaces.php');
 		};
 	},
 

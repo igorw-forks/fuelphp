@@ -24,8 +24,9 @@ define('FUEL_INIT_MEM', memory_get_usage());
 require FUELPATH.'fuel/kernel/classes/Fuel/Kernel/Environment.php';
 $env = new Fuel\Kernel\Environment();
 $env->init(array(
-	'name'  => isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : 'development',
-	'path'  => FUELPATH,
+	'name'        => isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : 'development',
+	'path'        => FUELPATH,
+	'namespaces'  => require FUELPATH.'composer/autoload_namespaces.php',
 ));
 
 /**
