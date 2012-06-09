@@ -9,4 +9,5 @@
 return $env->forge('Loader.Package')
 	->setRoutable(true)
 	->setPath(__DIR__)
-	->setNamespace('App');
+	->setNamespace('App')
+	->setRelativeClassload(true);
