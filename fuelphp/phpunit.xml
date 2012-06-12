@@ -14,6 +14,9 @@
 		<testsuite name="core">
 			<directory suffix=".php">fuel/core/resources/tests</directory>
 		</testsuite>
+		<testsuite name="validation">
+			<directory suffix=".php">fuel/validation/resources/tests</directory>
+		</testsuite>
 		<testsuite name="app">
 			<directory suffix=".php">app/resources/tests</directory>
 		</testsuite>
