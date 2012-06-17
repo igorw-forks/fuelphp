@@ -14,7 +14,9 @@ fuelphp/.composer/
 fuelphp/autoload.php
 fuelphp/bin/
 fuelphp/composer/
+fuelphp/dflydev/markdown
 fuelphp/fuel/
+fuelphp/symfony/
 fuelphp/doctrine/
 fuelphp/twig/
 fuelphp/app/resources/cache/

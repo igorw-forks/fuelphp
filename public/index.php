@@ -37,9 +37,7 @@ $app = $env->loader->loadApplication('app', function() {});
 /**
  * Run the app and output the response headers
  */
-$response = $app->request($env->input->uri())->execute()->response();
-$response->sendHeaders();
-$response = (string) $response->body();
+$response = $app->request($env->input->getPathInfo())->execute()->response()->sendHeaders()->getContent();
 
 /**
  * Compile profiling data
