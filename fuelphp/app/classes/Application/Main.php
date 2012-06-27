@@ -18,11 +18,6 @@ use Classes\Route\Fuel as Route;
 class Main extends Application\Base
 {
 	/**
-	 * @var  array  holds an array of named DBAL connections
-	 */
-	public $dbs = array();
-
-	/**
 	 * Configure the application's routes
 	 */
 	protected function setRoutes()

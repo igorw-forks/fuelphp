@@ -37,16 +37,16 @@ $app = $env->loader->loadApplication('app', function() {});
 /**
  * Run the app and output the response headers
  */
-$response = $app->request($env->input->getPathInfo())->execute()->response()->sendHeaders()->getContent();
+$response = $app->request($env->input->getPathInfo())->execute()->getResponse()->sendHeaders()->getContent();
 
 /**
  * Compile profiling data
  */
-$execTime = round($env->profiler()->timeElapsed(), 5);
-$memUsage = round($env->profiler()->memUsage() / 1000000, 4);
-$memPeakUsage = round($env->profiler()->memUsage(true) / 1000000, 4);
+$execTime = round($env->getProfiler()->getTimeElapsed(), 5);
+$memUsage = round($env->getProfiler()->getMemUsage() / 1000000, 4);
+$memPeakUsage = round($env->getProfiler()->getMemUsage(true) / 1000000, 4);
 $events = '';
-foreach ($env->profiler()->events() as $timestamp => $event)
+foreach ($env->getProfiler()->getObservedEvents() as $timestamp => $event)
 {
 	$events .= '<li>'.str_pad($timestamp, 17, '0').' :: '.implode(' :: ', $event).'</li>';
 }

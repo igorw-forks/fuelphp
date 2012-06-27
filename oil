@@ -35,20 +35,21 @@ $app = $env->loader->loadApplication('fuel/oil', function() {});
 /**
  * Run Oil
  */
+$cli = $env->getCli();
 try
 {
 	// Generates a URI based on the commandline input
-	for ($uri = '', $i = 1; ($arg = $env->cli()->option($i)) and strncmp($arg, '-', 1) != 0; $i++)
+	for ($uri = '', $i = 1; ($arg = $cli->getOption($i)) and strncmp($arg, '-', 1) != 0; $i++)
 	{
 		$uri .= '/'.$arg;
 	}
-	$env->cli()->write($app->request($uri)->execute()->response());
+	$cli->write($app->request($uri)->execute()->getResponse());
 }
 catch (\Exception $e)
 {
-	$env->cli()->error(get_class($e).': '.$e->getMessage());
-	$env->cli()->error('    file: '.$e->getFile());
-	$env->cli()->error('    line: '.$e->getLine());
-	$env->cli()->beep();
-	$env->cli()->option('speak') and `say --voice="Trinoids" "{$e->getMessage()}"`;
+	$cli->error(get_class($e).': '.$e->getMessage());
+	$cli->error('    file: '.$e->getFile());
+	$cli->error('    line: '.$e->getLine());
+	$cli->beep();
+	$cli->getOption('speak') and `say --voice="Trinoids" "{$e->getMessage()}"`;
 }
